@@ -1,0 +1,248 @@
+body{
+	font-family:tahoma,verdana,arial,sans-serif;
+	font-size:12px;
+	background-color: #fff;
+	color: #373737;
+}
+
+#header{
+	background-color: #015c58;
+	height: 50px;
+	border-bottom: 1px solid #0a3331;
+}
+
+#header_wrapper{
+	width: 960px;
+	margin: auto;
+}
+
+#header_title{
+	
+}
+
+#header_navigation{
+		
+}
+
+#header_navigation a{
+	color:#000;
+}
+
+#wrapper{
+	width: 960px;
+	margin: auto;
+}
+
+#sidebar{
+	width: 200px;
+}
+
+#content{
+	background-color: #ececec;
+	width: 748px; /*minus 2 border pixels*/
+	padding: 5px;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+
+#footer{
+	border-top: 1px solid #a9a9a9;
+	height: 50px;
+	background-color: #d5d5d5;
+}
+
+#footer_info{
+	width: 960px;
+	margin: auto;
+}
+
+/************TEXT*************/
+
+h1{
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 5px;
+	text-shadow: #fff 1px 1px 0;
+}
+
+h2{
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 5px;
+	text-shadow: #fff 1px 1px 0;
+}
+
+h3{
+	font-size: 12px;
+	font-weight: bold;
+	margin-bottom: 5px;
+	text-shadow: #fff 1px 1px 0;
+}
+
+a{
+	color: #f4432e;
+	text-decoration: none;
+	text-shadow: #fff 1px 1px 0;
+}
+
+p{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	text-shadow: #fff 1px 1px 0;
+}
+
+/**********MISC ELEMENTS*******/
+a.btn_link{
+	float:right;
+	height:16px;
+	color:#7a7a7a;
+	text-shadow: #cacaca 1px 1px 0;
+	font-weight:bold;
+	/*SELECT APPROPIATE BKND*/
+	margin:5px;
+	min-width:50px;
+	padding:7px;
+	border:1px solid #4d4d4d;
+	text-align:center;
+}
+
+a.logout_btn{
+	background: #DDD url('../images/gray_btn_normal.png') repeat-x;
+}
+
+a.logout_btn:hover{
+	color:#9f9f9f;
+	text-shadow: #cacaca 1px 1px 0;
+	background: #DDD url('../images/gray_btn_over.png') repeat-x;
+}
+
+a.logout_btn:active{
+	color:#555;
+	text-shadow: none;
+	background: #DDD url('../images/gray_btn_down.png') repeat-x;
+}
+
+.dotted_line{
+	height:0px;
+	border-top:1px dotted #373737;
+	border-bottom:1px dotted #fff;
+	margin:5px;
+}
+
+img{
+	margin: 5px;
+}
+
+ul,ol{
+	margin: 5px;
+}
+
+li{
+	list-style: ;
+	list-style-type: disc;
+	list-style-position: inside;
+}
+
+#text_area,#text_field,input.password,select {
+	font-family:tahoma,verdana,arial,sans-serif;
+	font-size: 11px;
+    border: 1px solid #c0c0c0;
+	color: #212121;
+}
+
+input.button,input.btn,input.submit {
+	font-size: 11px;
+	color: #222;
+	background-color: #bebabc;
+	border: 1px solid #ebe1e3;
+	padding: 5px 10px;
+}
+/****************** BUTTONS ***********************/
+input,select{
+	margin:5px;
+}
+
+input[type=text],input[type=password] {
+height:24px;
+padding-left:10px;
+}
+
+input.btn,input[type=submit]{
+	background: #DDD url('../images/green_btn_normal.png') repeat-x;
+	font-weight:bold;
+	/*font-size:14px;*/
+	color:#000;
+	text-shadow: #539692 1px 1px 0;
+	height: 30px;
+	border:1px solid #4d4d4d;
+	cursor: pointer; /* hand-shaped cursor */
+}
+input.btn:hover,input[type=submit]:hover{
+	background: #DDD url('../images/green_btn_over.png') repeat-x;
+
+	text-shadow: #91bfbd 1px 1px 0;
+}
+input.btn:active,input[type=submit]:active{
+	background: #DDD url('../images/green_btn_down.png') repeat-x;
+	text-shadow: none;
+}
+
+/****************** TABLES ************************/
+table.user_table{
+	font-family: Verdana;
+	font-weight: normal;
+	font-size: 11px;
+	color: #fff;
+	width: 320px;
+	background-color: #024C68;
+	border: 1px #1D6682 solid;
+	border-collapse: collapse;
+	border-spacing: 0px;
+	margin: 10px;
+}
+
+
+table.user_table td.servHd{
+	background-color: #1D6682;
+	text-align: left;
+	font-family: Verdana;
+	font-weight: bold;
+	font-size: 11px;
+	color: #FFF;
+}
+
+
+table.user_table td{
+	border-bottom: 1px dotted #6699CC;
+	border-left: 1px dotted #6699CC;
+	font-family: Verdana, sans-serif, Arial;
+	font-weight: normal;
+	font-size: 11px;
+	color: #404040;
+	text-align: left;
+	padding-left: 3px;
+}
+
+table.user_table tr.odd{
+	background-color: #CDE3EB;
+}
+
+table.user_table tr.eaven{
+	background-color: #A2D3E6;
+}
+
+.servBodL { border-left: 1px dotted #CEDCEA; } 
+
+/*********GENERAL RULES********/
+.left{
+	float: left;
+}
+
+.right{
+	float: right;
+}
+
+.break{
+	clear: both;
+}
+/*********************/
