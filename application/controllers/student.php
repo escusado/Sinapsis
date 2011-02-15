@@ -5,6 +5,12 @@ class Student extends Sinapsis_Controller{
 	}
 
 	function index(){
-		echo 'welcome student';
+		$this->load->model('projects_model');
+		//check if student has project
+		if($this->projects_model->get_project()){
+			redirect('project/dashboard');
+		}else{
+			redirect('project/create_project_form');
+		}
 	}
 }

@@ -32,15 +32,7 @@ class Board extends Sinapsis_Controller{
 			'password' => sha1($this->input->post('username')),
 			'role' => $this->input->post('role')
 		);
-
-		if($this->input->post('role') == 'nu'){
-			$empty_project = array(
-				'project_id' => 'not_created_yet'
-			);
-
-			array_merge($user, $empty_project);
-		}
-
+		
 		$this->users_model->create_user($user);
 
 		redirect('board/create_user_form');
