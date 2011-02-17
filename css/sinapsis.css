@@ -106,6 +106,12 @@ a.btn_link{
 	text-align:center;
 }
 
+.link_cursor{
+	cursor: pointer;
+	cursor: hand;
+
+}
+
 a.logout_btn{
 	background: #DDD url('../images/gray_btn_normal.png') repeat-x;
 }
@@ -130,7 +136,7 @@ a.logout_btn:active{
 }
 
 img{
-	margin: 5px;
+	/*margin: 5px;*/
 }
 
 ul,ol{
@@ -138,9 +144,9 @@ ul,ol{
 }
 
 li{
-	list-style: ;
+/*	list-style: ;
 	list-style-type: disc;
-	list-style-position: inside;
+	list-style-position: inside;*/
 }
 
 #text_area,#text_field,input.password,select {
@@ -245,4 +251,9 @@ table.user_table tr.eaven{
 .break{
 	clear: both;
 }
-/*********************/
+/*********** PROJECT DASHBOARD **********/
+li.tree_node{
+	cursor: default;
+	font-size:17px;
+}
+
