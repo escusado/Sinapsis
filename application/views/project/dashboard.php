@@ -2,14 +2,24 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
+	//debug
+	// $("body").click(function(event) {
+	  // console.log($(event.target));
+	// });
+
 		$('li.tree_node').hover(function(){
 				$(this).append($('#node_editor').html());
-				$(this).children('#edit_tools').attr('style','display:inline');
+				$(this).find('#add_node_master').attr('id','add_node');
+				$(this).children('.edit_tools').attr('style','display:inline');
 			},
 			function(){
-				$(this).children('#edit_tools').remove();
+				$(this).children('.edit_tools').remove();
 			}
 		);
+
+		$('img#add_node').click(function() {
+			console.log('asdf');
+		});
 
 	});
 </script>
@@ -41,7 +51,7 @@
 ?>
 
 <div id="node_editor">
-	<span id="edit_tools" style="display:none;"><img id="add_node" class="link_cursor" src="<?php echo base_url();?>images/page_add.png"></span>
+	<span class="edit_tools" style="display:none;"><img id="add_node_master" class="link_cursor" src="<?php echo base_url();?>images/page_add.png"></span>
 </div>
 
 <?php echo anchor('student/edit_project','Editar proyecto')?>
