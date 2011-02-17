@@ -17,9 +17,10 @@ class Projects_model extends Model{
 	}
 
 	function create_project($data){
-		$this->mdb->insert(
+		return $this->mdb->insert(
 			$this->mdb->sinapsisDB->projects,
 			$data
 		);
+
 	}
 }
