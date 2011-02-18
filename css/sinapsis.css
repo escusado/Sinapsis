@@ -252,8 +252,25 @@ table.user_table tr.eaven{
 	clear: both;
 }
 /*********** PROJECT DASHBOARD **********/
-li.tree_node{
+li.tree_node,li.new_node{
 	cursor: default;
 	font-size:17px;
 }
+li.new_node{
+	color:#8F8F8F;
+}
+input.add_node_form{
+	height:15px;
+}
 
+#place_node{
+	margin:-2px;
+}
+
+#cancel_place_node{
+	margin:0px 0px -2px 10px;
+}
+
+li#add_node_form{
+	height:28px;
+}

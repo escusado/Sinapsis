@@ -5,21 +5,34 @@
 	//debug
 	// $("body").click(function(event) {
 	  // console.log($(event.target));
-	// });
+	// }); Conclusión</span>
 
 		$('li.tree_node').hover(function(){
 				$(this).append($('#node_editor').html());
-				$(this).find('#add_node_master').attr('id','add_node');
 				$(this).children('.edit_tools').attr('style','display:inline');
+
+				$('img#add_node').click(function() {
+					$(this).parent().parent().parent().children('li#add_node_form').remove();
+					$('li#add_node_form').clone().insertAfter($(this).parent().parent());
+					$(this).parent().parent().parent().children('li#add_node_form').slideDown();
+
+					$('img#place_node').click(function() {
+						console.log('add');
+						$(this).append('<li class="new_node " style="display:none;"><span class="index_title">'+$(this).parent().children('.add_node_form').val()+'</li>');
+						$(this).children('li.new_node').insertAfter($(this).parent().parent());
+						$(this).parent().parent().next().slideDown();
+						$(this).parent().parent().remove();
+					});
+					$('img#cancel_place_node').click(function() {
+						$(this).parent().parent().remove();
+					});
+				});
 			},
 			function(){
 				$(this).children('.edit_tools').remove();
 			}
 		);
 
-		$('img#add_node').click(function() {
-			console.log('asdf');
-		});
 
 	});
 </script>
@@ -50,8 +63,13 @@
 	echo '</ul>';
 ?>
 
-<div id="node_editor">
-	<span class="edit_tools" style="display:none;"><img id="add_node_master" class="link_cursor" src="<?php echo base_url();?>images/page_add.png"></span>
+<div style="display:none;">
+	<div id="node_editor">
+		<span class="edit_tools"><img id="add_node" class="link_cursor" src="<?php echo base_url();?>images/page_add.png"></span>
+	</div>
+
+	<li id="add_node_form" style="display:none;"><span id="place_node" class="edit_tools" ><?php echo form_input('title', 'Título','class="add_node_form"'); ?><img id="place_node" class="link_cursor" src="<?php echo base_url();?>images/add.png"><img id="cancel_place_node" class="link_cursor" src="<?php echo base_url();?>images/delete.png"></span></li>
+
 </div>
 
 <?php echo anchor('student/edit_project','Editar proyecto')?>
