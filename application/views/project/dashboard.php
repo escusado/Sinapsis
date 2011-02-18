@@ -36,6 +36,15 @@
 
 		$('img#add_entry').click(function() {
 			$(this).parent().children('[name$="parent_id"]').val($(this).parent().parent().parent().parent().attr('node_id'));
+
+			var order = $(this).parent().parent().parent().prev().attr('node_order');
+
+			if(order == ''){
+				order = 0;
+			}
+
+			$(this).parent().children('[name$="order"]').val(order);
+			
 			$(this).parent().submit();
 		});
 
@@ -61,7 +70,7 @@
 			$entries_buffer = array();
 			if($entry['parent_id'] == $node_id){
 				array_push($entries_buffer,$entry);
-				echo '<li class="tree_node" node_id="',$entry['_id'],'"><span class="index_title">', $entry['title'], '</span></li>';
+				echo '<li class="tree_node" node_id="',$entry['_id'],'" node_order="',$entry['order'],'"><span class="index_title">', $entry['title'], '</span></li>';
 				display_node_childs($entry['_id'],$entries_buffer); //recursive call to trace the tree
 			}
 
@@ -84,6 +93,7 @@
 		<?php 
 			echo form_open('entry/new_entry');
 				echo '<input type="hidden" name="parent_id" value="-"/>';
+				echo '<input type="hidden" name="order" value="0"/>';
 				echo form_input('title', 'Título','class="add_node_form"');
 				echo '<img id="add_entry" class="link_cursor" src="'.base_url().'images/add.png" title="Colocar Índice">';
 			echo form_close();
@@ -97,6 +107,7 @@
 			echo form_open('entry/new_entry');
 				echo '<img class="sub_index" src="', base_url() ,'images/sub_index.png">';
 				echo '<input type="hidden" name="parent_id" value="-"/>';
+				echo '<input type="hidden" name="order" value="0"/>';
 				echo form_input('title', 'Título','class="add_node_form"');
 				echo '<img id="add_sub_entry" class="link_cursor" src="'.base_url().'images/add.png" title="Colocar Subíndice">';
 			echo form_close();

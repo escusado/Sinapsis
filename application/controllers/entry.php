@@ -2,9 +2,11 @@
 class Entry extends Controller{
 	function __construct(){
 		parent::Controller();
+		$this->load->model('entries_model');
 	}
 
 	function new_entry(){
-		$this->output->enable_profiler(TRUE);
+		$this->entries_model->create_new_entry();
+		redirect('project/dashboard');
 	}
 }

@@ -17,6 +17,8 @@ class Project extends Sinapsis_Controller{
 			'entries' => $this->entries_model->get_entries(),
 		);
 		
+		//print_r($data);
+
 		$this->load->view('project/dashboard',$data);
 	}
 
