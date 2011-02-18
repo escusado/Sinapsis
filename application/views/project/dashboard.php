@@ -8,33 +8,41 @@
 	// }); Conclusión</span>
 
 		$('li.tree_node').hover(function(){
-				$(this).append($('#node_editor').html());
-				$(this).children('.edit_tools').attr('style','display:inline');
+				$('span#node_operations').clone().insertAfter($(this).children('span'));
 
 				$('img#add_node').click(function() {
-					$(this).parent().parent().parent().children('li#add_node_form').remove();
+					$('#project_index').find('li#add_node_form').remove();
+					$('#project_index').find('li#add_sub_node_form').remove();
 					$('li#add_node_form').clone().insertAfter($(this).parent().parent());
 					$(this).parent().parent().parent().children('li#add_node_form').slideDown();
+				});
 
-					$('img#place_node').click(function() {
-						console.log('add');
-						$(this).append('<li class="new_node " style="display:none;"><span class="index_title">'+$(this).parent().children('.add_node_form').val()+'</li>');
-						$(this).children('li.new_node').insertAfter($(this).parent().parent());
-						$(this).parent().parent().next().slideDown();
-						$(this).parent().parent().remove();
-					});
-					$('img#cancel_place_node').click(function() {
-						$(this).parent().parent().remove();
-					});
+				$('img#add_sub_node').click(function() {
+					$('#project_index').find('li#add_node_form').remove();
+					$('#project_index').find('li#add_sub_node_form').remove();
+					$('li#add_sub_node_form').clone().insertAfter($(this).parent().parent());
+					$(this).parent().parent().parent().children('li#add_sub_node_form').slideDown();
 				});
 			},
-			function(){
-				$(this).children('.edit_tools').remove();
-			}
+				function(){
+					$('#project_index').find('span#node_operations').remove();
+				}
 		);
+		
+		$('img#add_sub_entry').click(function() {
+			$(this).parent().children('[name$="parent_id"]').val($(this).parent().parent().parent().prev().attr('node_id'));
+			$(this).parent().submit();
+		});
 
+		$('img#add_entry').click(function() {
+			$(this).parent().children('[name$="parent_id"]').val($(this).parent().parent().parent().parent().attr('node_id'));
+			$(this).parent().submit();
+		});
 
 	});
+
+
+
 </script>
 
 <h1> <?php echo $project['project_name']; ?></h1>
@@ -43,7 +51,8 @@
 	//echo '<pre>', print_r($entries, true), '</pre>';
 
 	
-	echo '<ul id="project_index">';
+	echo '<ul id="project_index" node_id="',$project['_id'],'">';
+	
 	display_node_childs($project['_id'],$entries);
 	function display_node_childs($node_id,$entries){
 		
@@ -64,11 +73,36 @@
 ?>
 
 <div style="display:none;">
-	<div id="node_editor">
-		<span class="edit_tools"><img id="add_node" class="link_cursor" src="<?php echo base_url();?>images/page_add.png"></span>
-	</div>
 
-	<li id="add_node_form" style="display:none;"><span id="place_node" class="edit_tools" ><?php echo form_input('title', 'Título','class="add_node_form"'); ?><img id="place_node" class="link_cursor" src="<?php echo base_url();?>images/add.png"><img id="cancel_place_node" class="link_cursor" src="<?php echo base_url();?>images/delete.png"></span></li>
+	<span id="node_operations">
+		<img id="add_node" class="link_cursor" src="<?php echo base_url();?>images/page_add.png" title="Añadir índice">
+		<img id="add_sub_node" class="link_cursor" src="<?php echo base_url();?>images/page_subindex.png" title="Añadir Subíndice">
+	</span>
+
+	<li id="add_node_form" style="display:none;">
+		<span class="edit_tools" >
+		<?php 
+			echo form_open('entry/new_entry');
+				echo '<input type="hidden" name="parent_id" value="-"/>';
+				echo form_input('title', 'Título','class="add_node_form"');
+				echo '<img id="add_entry" class="link_cursor" src="'.base_url().'images/add.png" title="Colocar Índice">';
+			echo form_close();
+		?>
+		</span>
+	</li>
+
+	<li id="add_sub_node_form" style="display:none;">
+		<span class="edit_tools" >
+		<?php 
+			echo form_open('entry/new_entry');
+				echo '<img class="sub_index" src="', base_url() ,'images/sub_index.png">';
+				echo '<input type="hidden" name="parent_id" value="-"/>';
+				echo form_input('title', 'Título','class="add_node_form"');
+				echo '<img id="add_sub_entry" class="link_cursor" src="'.base_url().'images/add.png" title="Colocar Subíndice">';
+			echo form_close();
+		?>
+		</span>
+	</li>
 
 </div>
 

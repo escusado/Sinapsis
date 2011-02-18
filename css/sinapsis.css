@@ -255,22 +255,21 @@ table.user_table tr.eaven{
 li.tree_node,li.new_node{
 	cursor: default;
 	font-size:17px;
+	margin-left:5px;
 }
 li.new_node{
 	color:#8F8F8F;
 }
-input.add_node_form{
+input.add_node_form {
 	height:15px;
 }
-
-#place_node{
-	margin:-2px;
+img.sub_index{
+	margin:0 -2px 0px 12px;
+}
+#add_entry,#add_sub_entry{
+	margin:0px 0px -2px -2px;
 }
 
-#cancel_place_node{
-	margin:0px 0px -2px 10px;
-}
-
-li#add_node_form{
+li#add_node_form,li#add_sub_node_form{
 	height:28px;
 }
