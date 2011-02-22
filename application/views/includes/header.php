@@ -1,8 +1,9 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="es">
+<!DOCTYPE HTML>
+<html lang="en">
 <head>
 	<title>Sinapsis</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
 	<link rel="stylesheet" href="<?php echo base_url();?>css/reset.css" type="text/css" />
 	<link rel="stylesheet" href="<?php echo base_url();?>css/sinapsis.css" type="text/css" />
 
@@ -11,6 +12,17 @@
 	
 </head>
 <body>
+
+
+<?php
+	//Display notice window
+	if($this->session->flashdata('notice_message') != '') {
+		echo '<div id="notice_message">';
+		echo $this->session->flashdata('notice_message');
+		echo '</div>';	
+	}
+?>
+
 	<div id="header">
 		<div id="header_wrapper">
 			<div id="header_title" class="left">
@@ -29,3 +41,6 @@
 			sidebar
 		</div>
 		<div id="content" class="left">
+
+
+		

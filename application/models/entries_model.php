@@ -73,10 +73,10 @@ class Entries_model extends Model{
 		$data = array(
 			'project_id' => $project_id,
 			'parent_id' => $this->input->post('parent_id'),
-			'order' => $this->input->post('order'),
 			'version' => 0,
 			'title' => $this->input->post('title'),
-			'body' => 'New Lorem Ipsum'
+			'body' => 'New Lorem Ipsum',
+			'order' => (int)$this->input->post('order')
 		);
 
 		$this->mdb->insert(
@@ -84,6 +84,10 @@ class Entries_model extends Model{
 			$data
 		);
 
+
+		//show flash data on header
+		$notice_message = 'Añadido:'.$this->input->post('title').'.<br \>En el índice: '.$this->input->post('order').'.';
+		$this->session->set_flashdata('notice_message', $notice_message);
 	}
 
 }

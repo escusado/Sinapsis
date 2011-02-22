@@ -95,6 +95,11 @@ class Sinapsis extends Controller{
 		echo $this->auth->get_user($this->session->userdata('user_id')) === FALSE;
 	}
 
-
+	function show_entries(){
+		$this->load->model('entries_model');
+		echo'<pre>';
+		print_r($this->entries_model->get_entries());
+		echo'</pre>';
+	}
 
 }

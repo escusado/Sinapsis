@@ -69,7 +69,13 @@ class Mdb {
 					else { $cursor = $collection->find($criteria); }
 
 					// apply sorting if array is in proper form
-					if (is_array($sort) and count($sort)) { $cursor->sort($sort); }
+					if (is_array($sort) and count($sort)) {
+						//print_r($sort);
+						$cursor->sort($sort);
+						// foreach($cursor as $record){
+						// 	print_r( $record );
+						// }
+					}
 
 					// apply limit if the limit is valid
 					if (ctype_digit((string)$limit) and $limit > 0) { $cursor->limit($limit); }

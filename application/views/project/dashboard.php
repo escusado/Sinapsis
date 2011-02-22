@@ -8,12 +8,12 @@
 	// }); Conclusión</span>
 
 		$('li.tree_node').hover(function(){
-				$('span#node_operations').clone().insertAfter($(this).children('span'));
+				$('span#node_operations').clone().insertAfter($(this).children('span.index_title'));
 
 				$('img#add_node').click(function() {
 					$('#project_index').find('li#add_node_form').remove();
 					$('#project_index').find('li#add_sub_node_form').remove();
-					$('li#add_node_form').clone().insertAfter($(this).parent().parent());
+					$('li#add_node_form').clone().insertBefore($(this).parent().parent());
 					$(this).parent().parent().parent().children('li#add_node_form').slideDown();
 				});
 
@@ -70,7 +70,7 @@
 			$entries_buffer = array();
 			if($entry['parent_id'] == $node_id){
 				array_push($entries_buffer,$entry);
-				echo '<li class="tree_node" node_id="',$entry['_id'],'" node_order="',$entry['order'],'"><span class="index_title">', $entry['title'], '</span></li>';
+				echo '<li class="tree_node" node_id="',$entry['_id'],'" node_order="',$entry['order'],'"><span class="index_order">', $entry['order'], '. </span><span class="index_title">', $entry['title'], '</span></li>';
 				display_node_childs($entry['_id'],$entries_buffer); //recursive call to trace the tree
 			}
 
@@ -95,7 +95,7 @@
 				echo '<input type="hidden" name="parent_id" value="-"/>';
 				echo '<input type="hidden" name="order" value="0"/>';
 				echo form_input('title', 'Título','class="add_node_form"');
-				echo '<img id="add_entry" class="link_cursor" src="'.base_url().'images/add.png" title="Colocar Índice">';
+				echo '<img id="add_entry" class="link_cursor" src="'.base_url().'images/add.png" title="Guardar Índice">';
 			echo form_close();
 		?>
 		</span>
