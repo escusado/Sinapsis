@@ -3,12 +3,14 @@
 	$(document).ready(function() {
 
 	//debug
-	// $("body").click(function(event) {
-	  // console.log($(event.target));
-	// }); Conclusión</span>
+	 /*$("body").click(function(event) {
+	   console.log($(event.target));
+	 }); */
+
+	var project_node = '<?php echo (string)$project['_id']; ?>';
 
 		$('li.tree_node').hover(function(){
-				$('span#node_operations').clone().insertAfter($(this).children('span.index_title'));
+				$('span#node_operations').clone().insertAfter($('li#'+$(this).attr('id')).children('span.index_title'));
 
 				$('img#add_node').click(function() {
 					$('#project_index').find('li#add_node_form').remove();
@@ -23,9 +25,10 @@
 					$('li#add_sub_node_form').clone().insertAfter($(this).parent().parent());
 					$(this).parent().parent().parent().children('li#add_sub_node_form').slideDown();
 				});
+
 			},
 				function(){
-					$('#project_index').find('span#node_operations').remove();
+					$('#'+project_node).find('span#node_operations').remove();
 				}
 		);
 		
@@ -61,23 +64,22 @@
 	//echo '<pre>', print_r($entries, true), '</pre>';
 
 	
-	echo '<ul id="project_index" node_id="',$project['_id'],'">';
+	echo '<ul id="',$project['_id'],'">';
 	
-	display_node_childs($project['_id'],$this->entries_model->get_entries_by_parent((string)$project['_id']));
-	function display_node_childs($node_id,$entries){
-		echo '<ul>';
+	display_node_childs($this->entries_model->get_entries_by_parent((string)$project['_id']),(string)$project['_id']);
+	function display_node_childs($entries,$node_id){
+		if(count($entries)!=0)echo '<ul id="',$node_id,'">';
 		foreach($entries as $entry){
 			
-			//$entries_buffer = array();
-			if($entry['parent_id'] == $node_id){
-				//array_push($entries_buffer,$entry);
-				echo '<li class="tree_node" node_id="',$entry['_id'],'" node_order="',$entry['order'],'"><span class="index_order">', $entry['order'], '. </span><span class="index_title">', $entry['title'], '</span></li>';
-				display_node_childs($entry['_id'],$entries); //recursive call to trace the tree
-			}
 
-			//echo '<pre>', print_r($entries_buffer, true), '</pre>';
+			echo '<li class="tree_node" id="',$entry['_id'],'" node_order="',$entry['order'],'"><span class="index_order">', $entry['order'], '. </span><span class="index_title">', $entry['title'], '</span>';
+
+			//VERY DIRTY recursive call to trace the tree
+			$CI =& get_instance();
+			display_node_childs( $CI->entries_model->get_entries_by_parent( (string)$entry['_id'] ),(string)$entry['_id'] ) ; 
+			echo '</li>';
 		}
-		echo '</ul>';
+		if(count($entries)!=0)echo '</ul>';
 	}
 	echo '</ul>';
 ?>
