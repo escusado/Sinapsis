@@ -13,7 +13,7 @@
 				$('img#add_node').click(function() {
 					$('#project_index').find('li#add_node_form').remove();
 					$('#project_index').find('li#add_sub_node_form').remove();
-					$('li#add_node_form').clone().insertBefore($(this).parent().parent());
+					$('li#add_node_form').clone().insertAfter($(this).parent().parent());
 					$(this).parent().parent().parent().children('li#add_node_form').slideDown();
 				});
 
@@ -37,7 +37,7 @@
 		$('img#add_entry').click(function() {
 			$(this).parent().children('[name$="parent_id"]').val($(this).parent().parent().parent().parent().attr('node_id'));
 
-			var order = $(this).parent().parent().parent().prev().attr('node_order');
+			var order = $(this).parent().parent().parent().next().attr('node_order');
 
 			if(order == ''){
 				order = 0;
@@ -56,27 +56,28 @@
 
 <h1> <?php echo $project['project_name']; ?></h1>
 
-<?php 
+<?php
+
 	//echo '<pre>', print_r($entries, true), '</pre>';
 
 	
 	echo '<ul id="project_index" node_id="',$project['_id'],'">';
 	
-	display_node_childs($project['_id'],$entries);
+	display_node_childs($project['_id'],$this->entries_model->get_entries_by_parent((string)$project['_id']));
 	function display_node_childs($node_id,$entries){
-		
+		echo '<ul>';
 		foreach($entries as $entry){
 			
-			$entries_buffer = array();
+			//$entries_buffer = array();
 			if($entry['parent_id'] == $node_id){
-				array_push($entries_buffer,$entry);
+				//array_push($entries_buffer,$entry);
 				echo '<li class="tree_node" node_id="',$entry['_id'],'" node_order="',$entry['order'],'"><span class="index_order">', $entry['order'], '. </span><span class="index_title">', $entry['title'], '</span></li>';
-				display_node_childs($entry['_id'],$entries_buffer); //recursive call to trace the tree
+				display_node_childs($entry['_id'],$entries); //recursive call to trace the tree
 			}
 
 			//echo '<pre>', print_r($entries_buffer, true), '</pre>';
 		}
-
+		echo '</ul>';
 	}
 	echo '</ul>';
 ?>
