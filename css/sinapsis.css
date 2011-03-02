@@ -132,7 +132,6 @@ a.logout_btn:active{
 	height:0px;
 	border-top:1px dotted #373737;
 	border-bottom:1px dotted #fff;
-	margin:5px;
 }
 
 img{
@@ -282,10 +281,10 @@ input.add_node_form {
 img.sub_index{
 	margin:0 -2px 0px 12px;
 }
-#add_entry,#add_sub_entry{
+#add_entry,#add_sub_entry,#cancel_entry{
 	margin:0px 0px -2px -2px;
 }
 
 li#add_node_form,li#add_sub_node_form{
-	height:28px;
+	height:20px;
 }

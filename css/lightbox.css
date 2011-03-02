@@ -1,0 +1,26 @@
+#lightbox{
+	position:absolute;
+	background-color:#000;
+	color:#fff;
+	width:100%;
+	opacity:0.8;
+}
+
+#lightbox_content{
+	color:#000;
+	position:absolute;
+	background-color:#FFF;
+	padding:5px;
+}
+
+#lightbox_title{
+	font-weight:bold;
+}
+
+#close_lightbox{
+	position:absolute;
+}
+
+#lightbox_dialog{
+	margin:auto;
+}

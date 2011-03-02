@@ -1,61 +1,5 @@
 <?php $this->load->view('includes/header'); ?>
-<script type="text/javascript">
-	$(document).ready(function() {
-
-	//debug
-	 /*$("body").click(function(event) {
-	   console.log($(event.target));
-	 }); */
-
-	var project_node = '<?php echo (string)$project['_id']; ?>';
-
-		$('li.tree_node').hover(function(){
-				$('span#node_operations').clone().insertAfter($('li#'+$(this).attr('id')).children('span.index_title'));
-
-				$('img#add_node').click(function() {
-					$('#project_index').find('li#add_node_form').remove();
-					$('#project_index').find('li#add_sub_node_form').remove();
-					$('li#add_node_form').clone().insertAfter($(this).parent().parent());
-					$(this).parent().parent().parent().children('li#add_node_form').slideDown();
-				});
-
-				$('img#add_sub_node').click(function() {
-					$('#project_index').find('li#add_node_form').remove();
-					$('#project_index').find('li#add_sub_node_form').remove();
-					$('li#add_sub_node_form').clone().insertAfter($(this).parent().parent());
-					$(this).parent().parent().parent().children('li#add_sub_node_form').slideDown();
-				});
-
-			},
-				function(){
-					$('#'+project_node).find('span#node_operations').remove();
-				}
-		);
-		
-		$('img#add_sub_entry').click(function() {
-			$(this).parent().children('[name$="parent_id"]').val($(this).parent().parent().parent().prev().attr('node_id'));
-			$(this).parent().submit();
-		});
-
-		$('img#add_entry').click(function() {
-			$(this).parent().children('[name$="parent_id"]').val($(this).parent().parent().parent().parent().attr('node_id'));
-
-			var order = $(this).parent().parent().parent().next().attr('node_order');
-
-			if(order == ''){
-				order = 0;
-			}
-
-			$(this).parent().children('[name$="order"]').val(order);
-			
-			$(this).parent().submit();
-		});
-
-	});
-
-
-
-</script>
+<script type='text/javascript' src='<?php echo base_url();?>js/dashboard.js'></script>
 
 <h1> <?php echo $project['project_name']; ?></h1>
 
@@ -72,11 +16,16 @@
 		foreach($entries as $entry){
 			
 
-			echo '<li class="tree_node" id="',$entry['_id'],'" node_order="',$entry['order'],'"><span class="index_order">', $entry['order'], '. </span><span class="index_title">', $entry['title'], '</span>';
+			echo '	<li class="tree_node" id="',$entry['_id'],'" node_order="',$entry['order'],'">';
+			echo '	<span class="node_data">';
+			echo '		<span class="index_order">', $entry['order'], '. </span>';
+			echo '		<span class="index_title">', $entry['title'], '</span>';
+			echo '	</span>';
 
 			//VERY DIRTY recursive call to trace the tree
 			$CI =& get_instance();
 			display_node_childs( $CI->entries_model->get_entries_by_parent( (string)$entry['_id'] ),(string)$entry['_id'] ) ; 
+			
 			echo '</li>';
 		}
 		if(count($entries)!=0)echo '</ul>';
@@ -91,7 +40,7 @@
 		<img id="add_sub_node" class="link_cursor" src="<?php echo base_url();?>images/page_subindex.png" title="Añadir Subíndice">
 	</span>
 
-	<li id="add_node_form" style="display:none;">
+	<div id="add_node_form" >
 		<span class="edit_tools" >
 		<?php 
 			echo form_open('entry/new_entry');
@@ -99,12 +48,13 @@
 				echo '<input type="hidden" name="order" value="0"/>';
 				echo form_input('title', 'Título','class="add_node_form"');
 				echo '<img id="add_entry" class="link_cursor" src="'.base_url().'images/add.png" title="Guardar Índice">';
+				echo '<img id="cancel_entry" class="link_cursor" src="'.base_url().'images/delete.png" title="Cancelar">';
 			echo form_close();
 		?>
 		</span>
-	</li>
+	</div>
 
-	<li id="add_sub_node_form" style="display:none;">
+	<div id="add_sub_node_form" >
 		<span class="edit_tools" >
 		<?php 
 			echo form_open('entry/new_entry');
@@ -116,7 +66,7 @@
 			echo form_close();
 		?>
 		</span>
-	</li>
+	</div>
 
 </div>
 
