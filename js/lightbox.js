@@ -19,8 +19,8 @@
 						   });
 
 	$('img#close_lightbox').offset({
-							top: $('#lightbox_content').offset().top,
-							left: $('#lightbox_content').offset().left+$('#lightbox_content').width()
+							top: $('#lightbox_content').offset().top+5,
+							left: $('#lightbox_content').offset().left+$('#lightbox_content').width()-10
 						   });
 
 	$('img#close_lightbox').click(function(){

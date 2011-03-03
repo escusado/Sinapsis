@@ -26,8 +26,8 @@ $(window).bind("load", function() {
 
 });
 
-/*$(document).ready(function() {
+$(document).ready(function() {
 	if($('#notice_message').length > 0){
 		$('#notice_message').fadeOut(5000);
 	}
-});*/
+});

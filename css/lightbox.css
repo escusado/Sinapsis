@@ -11,10 +11,13 @@
 	position:absolute;
 	background-color:#FFF;
 	padding:5px;
+	opacity:1;
 }
 
 #lightbox_title{
-	font-weight:bold;
+    font-size: 18px;
+    font-weight: bold;
+    max-width:400px;
 }
 
 #close_lightbox{
@@ -23,4 +26,5 @@
 
 #lightbox_dialog{
 	margin:auto;
+	padding-top:5px;
 }

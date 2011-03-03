@@ -27,7 +27,7 @@
 
 <div id="lightbox" style="display:none;">
 	<div id="lightbox_content">
-		<img id="close_lightbox" class="link_cursor" src="<?php echo base_url() ?>images/cancel.png" title="Cancelar">
+		<img id="close_lightbox" class="link_cursor" src="<?php echo base_url() ?>images/close_mark.png" title="Cancelar">
 		<div id="lightbox_title"></div>
 		<div class="dotted_line"></div>
 		<div id="lightbox_dialog">
