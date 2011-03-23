@@ -1,0 +1,91 @@
+<html>
+<head>
+	<title>test</title>
+	<link rel="stylesheet" type="text/css" href="reset.css" media="all" />
+	<script type="text/javascript" src="jquery-1.5.1.min.js"></script>
+</head>
+
+<style type="text/css" media="screen">
+	
+	#container{
+		background-color:#0C1021;
+		position:relative;
+		
+	}
+
+	.cell{
+		position:absolute;
+		border:1px solid #8DA6CE;
+		background-color:#44516B;
+	}
+
+	.cell p{
+		font-size:8px;
+		color:#fff;
+		
+	}
+
+</style>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	$('#container').width( $(window).width() );
+	$('#container').height( $(window).height() );
+
+	var size = 8;
+	var margin = 5;
+
+	var full_size = size + (margin*2);
+
+	var row_size = Math.floor( $('#container').width()/full_size );
+	var column_size = Math.floor( $('#container').height()/full_size );
+
+	var y=0;
+	var x=0;
+
+	for(var y = 0 ; y<column_size ; y+=1){
+		for(var x = 0 ; x<row_size ; x+=1){
+			$('#container').append('<div id="'+x+'_'+y+'" class="cell"><p>'+x+'</p></div>');
+			$('#'+x+'_'+y).css({
+								top:y*full_size,
+								left:x*full_size
+							});
+		}	
+	}
+
+	// for(var y = column_size ; y>0 ; y-=1){
+	// 	for(var x = row_size ; x>0 ; x-=1){
+	// 		$('#container').append('<div id="'+x+'_'+y+'" class="cell"><p>'+x+'</p></div>');
+	// 		$('#'+x+'_'+y).css({
+	// 							top:y*full_size,
+	// 							left:x*full_size
+	// 						});
+	// 	}	
+	// }
+
+	$('.cell').width(size);
+	$('.cell').height(size);
+	$('.cell').css('margin',margin);
+
+	// $('.cell').mousemove(function(event) {
+	// 	$(this).width(event.pageX);
+	// 	$(this).width(event.pageY);
+	// });
+
+	$('#23_13').mousemove(function(event) {
+		$(this).css('background-color','red')
+		console.log('x: '+event.pageX);
+		console.log('y: '+event.pageY);
+	});
+
+
+});
+
+</script>
+
+
+<body>	
+	<div id="container"></div>
+</body>
+</html>
