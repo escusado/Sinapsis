@@ -5,6 +5,24 @@ $(document).ready(function() {
    console.log($(event.target));
  }); */
 
+ 	/*test sortable jqueryui*/
+	$( ".sortable" ).sortable({
+		handle : '#move_node'
+		,
+		start: function(event,ui){
+			console.log( $(ui.item).parent().attr('id'));
+		}
+		,
+		update : function (event,ui) {
+			$('#move_node_form').lightbox('Mover índice de');
+
+		}
+	});
+
+		$( ".sortable" ).disableSelection();
+ 	/*test sortable jqueryui*/
+
+
 	$('span.node_data').hover(
 		function(){
 			//place controls in current node
@@ -14,7 +32,6 @@ $(document).ready(function() {
 		function(){
 			//console.log($(this).children());
 			$(this).children('span#node_operations').remove();
-			$(this).children('#add_node_form').remove();
 		}
 	);
 

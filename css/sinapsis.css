@@ -87,6 +87,11 @@ a.btn_link{
 	cursor: hand;
 	cursor: pointer;
 }
+
+.move_cursor{
+	cursor:move;
+}
+
 a.logout_btn{
 	background: #DDD url('../images/gray_btn_normal.png') repeat-x;
 }
